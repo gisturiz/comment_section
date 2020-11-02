@@ -5,10 +5,27 @@ export default function Message() {
 
   const [listComments, setListComments] = useState(["hi"]);
 
+  const [karma, setKarma] = useState(34);
+
+  const [karmaFlag, setKarmaFlag] = useState(false);
+
   const onSubmit = (e) => {
     e.preventDefault();
     setListComments([...listComments, comment]);
     setComment("");
+  };
+
+  const upKarma = () => {
+    const raiseKarma = () => {
+      if (karmaFlag === false) {
+        setKarma(karma + 1);
+        setKarmaFlag(true);
+      } else {
+        setKarma(karma - 1);
+        setKarmaFlag(false);
+      }
+    };
+    raiseKarma();
   };
 
   return (
@@ -24,11 +41,14 @@ export default function Message() {
       </form>
       <div className="display">
         {listComments
-          ? listComments.map((comment, key) => 
-          <div className="comment">
-          <div className="username">Gustavo</div>
-          <div key={key}>"{comment}"</div>
-          </div>)
+          ? listComments.map((comment, key) => (
+              <div className="comment">
+                <div className="username">Gustavo</div>
+                <div key={key}>"{comment}"</div>
+                {karma === 0 ? null : <div>Karma: {karma}</div>}
+                <button onClick={upKarma}>Like</button>
+              </div>
+            ))
           : null}
       </div>
     </div>
