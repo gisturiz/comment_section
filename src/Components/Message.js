@@ -3,9 +3,9 @@ import React, { useState } from "react";
 export default function Message() {
   const [comment, setComment] = useState("");
 
-  const [listComments, setListComments] = useState(["hi"]);
+  const [listComments, setListComments] = useState([]);
 
-  const [karma, setKarma] = useState(34);
+  const [karma, setKarma] = useState(0);
 
   const [karmaFlag, setKarmaFlag] = useState(false);
 
@@ -45,7 +45,7 @@ export default function Message() {
               <div className="comment">
                 <div className="username">Gustavo</div>
                 <div key={key}>"{comment}"</div>
-                {karma === 0 ? null : <div>Karma: {karma}</div>}
+                <div>Karma: {karma}</div>
                 <button onClick={upKarma}>Like</button>
               </div>
             ))
